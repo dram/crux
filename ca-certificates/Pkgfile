@@ -1,0 +1,21 @@
+# Description: Common CA certificates
+# URL: http://packages.debian.org/sid/ca-certificates
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=ca-certificates
+version=20090814
+release=1
+source=(http://ftp.us.debian.org/debian/pool/main/c/ca-certificates/ca-certificates_20090814+nmu3_all.deb)
+
+build() {
+	ar -x ca-certificates_20090814+nmu3_all.deb
+	tar zxvf ./data.tar.gz
+	install -D -m 0755 usr/sbin/update-ca-certificates $PKG/usr/sbin/update-ca-certificates
+	cp -a etc $PKG/
+	mkdir -p $PKG/usr/share/ca-certificates/
+	cp -a usr/share/ca-certificates/* $PKG/usr/share/ca-certificates/
+	(
+		cd $PKG/usr/share/ca-certificates/
+		find . -name '*.crt' | sort | cut -b3-
+	) >$PKG/etc/ca-certificates.conf
+}

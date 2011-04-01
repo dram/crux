@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Ignore run-parts errors. 
+
+/usr/sbin/update-ca-certificates
+
+# End of file

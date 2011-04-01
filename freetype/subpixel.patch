@@ -1,0 +1,11 @@
+--- include/freetype/config/ftoption.h.old	2011-03-25 14:23:57.526000001 +0000
++++ include/freetype/config/ftoption.h	2011-03-25 14:24:21.565000001 +0000
+@@ -93,7 +93,7 @@
+   /* This is done to allow FreeType clients to run unmodified, forcing     */
+   /* them to display normal gray-level anti-aliased glyphs.                */
+   /*                                                                       */
+-/* #define FT_CONFIG_OPTION_SUBPIXEL_RENDERING */
++#define FT_CONFIG_OPTION_SUBPIXEL_RENDERING
+ 
+ 
+   /*************************************************************************/
