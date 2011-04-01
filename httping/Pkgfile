@@ -1,0 +1,16 @@
+# Description: A "ping"-like tool for HTTP requests
+# URL: http://www.vanheusden.com/httping/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=httping
+version=1.4.4
+release=1
+source=(http://www.vanheusden.com/httping/httping-1.4.4.tgz)
+
+build() {
+	cd $name-$version
+	make
+	make DESTDIR=$PKG install
+	mv $PKG/usr/share/man $PKG/usr/
+	rm -rf $PKG/usr/share/
+}

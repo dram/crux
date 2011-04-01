@@ -1,0 +1,16 @@
+# Description: the MirBSD Korn Shell
+# URL: https://www.mirbsd.org/mksh.htm
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=mksh
+version=R39c
+release=1
+source=(http://pub.allbsd.org/MirOS/dist/mir/$name/$name-$version.cpio.gz)
+
+build() {
+	gzip -dc $name-$version.cpio.gz | cpio -mid && cd $name
+	/bin/sh ./Build.sh
+	mkdir -p $PKG/bin/ $PKG/usr/man/man1/
+	cp mksh $PKG/bin/
+	cp mksh.1 $PKG/usr/man/man1/
+}

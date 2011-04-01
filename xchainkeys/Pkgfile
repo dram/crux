@@ -1,0 +1,16 @@
+# Description: Chained keybindings for X11
+# URL: http://code.google.com/p/xchainkeys
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=xchainkeys
+version=0.9.1
+release=1
+source=(http://xchainkeys.googlecode.com/files/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr --mandir=/usr/man
+	make
+	DESTDIR=$PKG make install
+	rm -rf $PKG/usr/share/
+}

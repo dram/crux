@@ -1,0 +1,242 @@
+1. action.py:
+	An error will occur if both UTF-8 and Unicode string is used in '%'.
+	'%s %s' % ('测试', u'foo')
+
+2. files.py:
+	For example, with following directory tree, linked is a symbolic link
+	to outer.
+
+	- linked@
+	- outer/
+	  - inner/
+
+	using lfm to open `linked' directly, enter into inner, then go back to
+	`..', os.readlink() will complained with Invalid argument.
+
+	So patch should be normalized before send it to readlink.
+
+3. lfm.py & messages.py:
+	In these two files, use wcs_width, wcs_take_head and wcs_take_tail to
+	replace len() and slices. So it can correctly calculte width of strings
+	which contains wide characters. There are some other wcs_width
+	implementations in issue6755 (http://bugs.python.org/issue6755). Also
+	there is a module UnicodeWidth (http://mothy.org/hacks/unicodewidth/)
+	can do the same job.
+
+diff -ruN lfm-2.2/lfm/actions.py lfm-2.2-modified/lfm/actions.py
+--- lfm-2.2/lfm/actions.py	2010-05-22 04:48:02.000000000 +0800
++++ lfm-2.2-modified/lfm/actions.py	2011-03-27 14:53:30.748475506 +0800
+@@ -1054,10 +1054,10 @@
+     elif parms == '':
+         cmd = get_escaped_filename(filename)
+     else:
+-        cmd = '%s %s' % (get_escaped_filename(filename), parms)
++        cmd = '%s %s' % (get_escaped_filename(filename), encode(parms))
+     curses.endwin()
+-    st, msg = ProcessFunc('Executing file', encode(filename),
+-                          run_shell, cmd, encode(tab.path), True).run()
++    st, msg = ProcessFunc('Executing file', filename,
++                          run_shell, cmd, tab.path, True).run()
+     if st == -1:
+         messages.error('Executing file', msg)
+     if st != -100 and msg is not None:
+diff -ruN lfm-2.2/lfm/files.py lfm-2.2-modified/lfm/files.py
+--- lfm-2.2/lfm/files.py	2009-08-28 20:35:52.000000000 +0800
++++ lfm-2.2-modified/lfm/files.py	2011-03-27 14:11:46.632825282 +0800
+@@ -90,8 +90,7 @@
+ def get_linkpath(path, filename):
+     """return absolute path to the destination of a link"""
+ 
+-    link_dest = os.readlink(os.path.join(path, filename))
+-    return os.path.normpath(os.path.join(path, link_dest))
++    return os.readlink(os.path.normpath(os.path.join(path, filename)))
+ 
+ 
+ def join(directory, f):
+diff -ruN lfm-2.2/lfm/lfm.py lfm-2.2-modified/lfm/lfm.py
+--- lfm-2.2/lfm/lfm.py	2010-01-24 04:12:20.000000000 +0800
++++ lfm-2.2-modified/lfm/lfm.py	2011-03-31 07:04:15.393208002 +0800
+@@ -268,8 +268,10 @@
+                 else:
+                     realpath = files.get_realpath(adir.path, filename,
+                                                   adir.files[filename][files.FT_TYPE])
+-                path = (len(realpath)>maxw-35) and \
+-                    '~' + realpath[-(maxw-37):] or realpath
++                if utils.wcs_width(realpath) > maxw - 35:
++                    path = '~' + utils.wcs_take_tail(realpath, maxw - 37)
++                else:
++                    path = realpath
+                 self.win.addstr(0, 20, 'Path: ' + utils.encode(path))
+         if maxw > 10:
+             try:
+@@ -375,8 +377,9 @@
+                     path = os.path.basename(tab.vbase.split('#')[0])
+                 else:
+                     path = os.path.basename(tab.path) or os.path.dirname(tab.path)
+-                if len(path) > w - 2:
+-                    path = '[%s~]' % path[:w-3]
++                if utils.wcs_width(path) > w - 2:
++                    t = utils.wcs_take_head(path, w - 3)
++                    path = '[%s~%s]' % (t, (w - 3 - utils.wcs_width(t)) * ' ')
+                 else:
+                     path = '[' + path + ' ' * (w-2-len(path)) + ']'
+             attr = (tab==self.act_tab) and curses.color_pair(10) or curses.color_pair(1)
+@@ -429,7 +432,8 @@
+                 self.win.attrset(curses.color_pair(2))
+                 attr = curses.color_pair(2)
+             path = tab.vfs and vfs.join(tab) or tab.path
+-            path = (len(path)>w-5) and '~' + path[-w+5:] or path
++            if utils.wcs_width(path) > w - 5:
++                path = '~' + utils.wcs_take_tail(path, w - 5)
+             self.win.box()
+             self.win.addstr(0, 2, utils.encode(path), attr)
+             self.win.addstr(1, 1,
+@@ -740,11 +744,13 @@
+ 
+     def get_fileinfo_str_short(self, res, maxw, pos_col1):
+         filewidth = maxw - 24
+-        fname = res['filename']
+-        if len(fname) > filewidth:
++        fname = utils.decode(res['filename'])
++        if utils.wcs_width(fname) > filewidth:
+             half = int(filewidth/2)
+-            fname = fname[:half+2] + '~' + fname[-half+3:]
+-        fname = fname.ljust(pos_col1-2)[:pos_col1-2]
++            head = utils.wcs_take_head(fname, half + 2)
++            tail = utils.wcs_take_tail(fname, half - 3)
++            fname = head + '~' + tail
++        fname += ' ' * (pos_col1 - 2 - utils.wcs_width(fname))
+         res['fname'] = fname
+         if res['dev']:
+             res['devs'] = '%3d,%d' % (res['maj_rdev'], res['min_rdev'])
+@@ -755,11 +761,13 @@
+ 
+ 
+     def get_fileinfo_str_long(self, res, maxw):
+-        filewidth = maxw - 57
+-        fname = res['filename']
+-        if len(fname) > filewidth:
++        filewidth = maxw - 61
++        fname = utils.decode(res['filename'])
++        if utils.wcs_width(fname) > filewidth:
+             half = int(filewidth/2)
+-            fname = fname[:half+2] + '~' + fname[-half+2:]
++            head = utils.wcs_take_head(fname, half + 2)
++            tail = utils.wcs_take_tail(fname, half - 3)
++            fname = head + '~' + tail
+         res['fname'] = fname
+         res['owner'] = res['owner'][:10]
+         res['group'] = res['group'][:10]
+diff -ruN lfm-2.2/lfm/messages.py lfm-2.2-modified/lfm/messages.py
+--- lfm-2.2/lfm/messages.py	2009-08-22 18:30:39.000000000 +0800
++++ lfm-2.2-modified/lfm/messages.py	2011-03-31 06:58:27.557014000 +0800
+@@ -37,9 +37,9 @@
+         win.bkgd(br_bg, br_att)
+         win.erase()
+         win.box(0, 0)
+-        if len(title) > app.maxw - 14:
+-            title = title[:app.maxw-10] + '...' + '\''
+-        win.addstr(0, int((w-len(title)-2)/2), ' %s ' % utils.encode(title),
++        if utils.wcs_width(title) > app.maxw - 14:
++            title = utils.wcs_take_head(title, app.maxw - 10) + '...' + '\''
++        win.addstr(0, int((w-utils.wcs_width(title)-2)/2), ' %s ' % utils.encode(title),
+                    curses.A_BOLD)
+         win.addstr(2, 2, utils.encode(text), bd_att)
+         if self.waitkey:
+@@ -88,12 +88,12 @@
+         self.waitkey = waitkey
+         text = text.replace('\t', ' ' * 4)
+         w = app.maxw - 20
+-        if len(title) > w - 4:
+-            title = title[:w-4]
+-        if len(text) > w - 4:
+-            text = text[:w-5]
+-        if len(footer) > w - 4:
+-            footer = footer[:w-4]
++        if utils.wcs_width(title) > w - 4:
++            title = utils.wcs_take_head(title, w - 4)
++        if utils.wcs_width(text) > w - 4:
++            text = utils.wcs_take_head(text, w - 5)
++        if utils.wcs_width(footer) > w - 4:
++            footer = utils.wcs_take_head(footer, w - 4)
+         self.init_ui(5, w, title, text, br_bg, br_att, bd_att, bd_bg)
+         if footer and not self.waitkey:
+             self.win.addstr(4, int((w-len(footer)-2)/2),
+diff -ruN lfm-2.2/lfm/utils.py lfm-2.2-modified/lfm/utils.py
+--- lfm-2.2/lfm/utils.py	2011-03-27 14:22:12.284265487 +0800
++++ lfm-2.2-modified/lfm/utils.py	2011-03-31 07:27:33.046144717 +0800
+@@ -14,6 +14,7 @@
+ import select
+ import cPickle
+ import curses
++import unicodedata
+ 
+ import files
+ import compress
+@@ -527,8 +528,8 @@
+     def __init__(self, title='', subtitle='', func=None, *args):
+         self.func = func
+         self.args = args
+-        self.title = title[:app.maxw-14]
+-        self.subtitle = subtitle[:app.maxw-14]
++        self.title = wcs_take_head(title, app.maxw-14)
++        self.subtitle = wcs_take_head(subtitle, app.maxw-14)
+         self.init_gui()
+         self.cursor_i = 0
+         self.status = 0
+@@ -1009,6 +1010,55 @@
+ 
+ 
+ ######################################################################
++##### wide char functions
++def wcs_width(s):
++    if not isinstance(s, unicode):
++        return len(s)
++
++    sum = 0
++    for c in s:
++        if unicodedata.east_asian_width(c) in ('W', 'F'):
++            sum += 2
++        else:
++            sum += 1
++    return sum
++
++def wcs_take_head(s, max_len):
++    if not isinstance(s, unicode):
++        return s[:max_len]
++
++    remain = max_len
++    for idx, char in enumerate(s):
++        if unicodedata.east_asian_width(char) in ('W', 'F'):
++            remain -= 2
++        else:
++            remain -= 1
++
++        if remain == 0:
++            return s[:idx+1]
++        elif remain < 0:
++            return s[:idx]
++    return s
++
++def wcs_take_tail(s, max_len):
++    if not isinstance(s, unicode):
++        return s[-max_len:]
++
++    remain = max_len
++    for idx, char in enumerate(reversed(s)):
++        if unicodedata.east_asian_width(char) in ('W', 'F'):
++            remain -= 2
++        else:
++            remain -= 1
++
++        if remain == 0:
++            return s[-idx-1:]
++        elif remain < 0:
++            return s[-idx:]
++    return s
++
++
++######################################################################
+ ##### useful functions
+ def get_escaped_filename(filename):
+     filename = filename.replace('$', '\\$')

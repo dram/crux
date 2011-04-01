@@ -1,0 +1,23 @@
+# Description: apvlv is a PDF/DJVU/UMD Viewer which behaves like Vim
+# URL: http://code.google.com/p/apvlv
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=apvlv
+version=0.1.1
+release=1
+source=(http://apvlv.googlecode.com/files/$name-$version-Source.tar.gz)
+
+build() {
+	cd $name-$version-Source
+
+	cmake \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DSYSCONFDIR=/usr/etc \
+		-DAPVLV_WITH_DJVU=OFF \
+		-DAPVLV_WITH_UMD=OFF \
+		-DMANDIR=/usr/man \
+		.
+	make
+	DESTDIR=$PKG make install
+	rm -r $PKG/usr/share
+}
