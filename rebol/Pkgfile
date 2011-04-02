@@ -1,0 +1,14 @@
+# Description: Relative Expression Based Object Language
+# URL: http://www.rebol.com
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=rebol
+version=2.7.8.4.2
+release=1
+source=(http://www.rebol.com/downloads/v278/rebol-core-278-4-2.tar.gz
+	http://www.rebol.com/downloads/v278/rebol-view-278-4-2.tar.gz)
+
+build() {
+	install -D -m 755 releases/rebol-core/rebol $PKG/usr/bin/rebol
+	install -D -m 755 releases/rebol-view/rebol $PKG/usr/bin/rebview
+}
