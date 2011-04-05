@@ -1,6 +1,7 @@
 # Description: Relative Expression Based Object Language
 # URL: http://www.rebol.com
 # Packager: Xin Wang, dram dot wang at gmail dot com
+# Depends on: xorg-font-adobe-75dpi
 
 name=rebol
 version=2.7.8.4.2
