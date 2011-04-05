@@ -1,0 +1,25 @@
+# Description: A multilingual input method framework.
+# URL: http://code.google.com/p/uim
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=uim
+version=1.6.1
+release=1
+source=(http://uim.googlecode.com/files/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr \
+		--mandir=/usr/man \
+		--disable-nls \
+		--disable-fep \
+		--disable-emacs \
+		--without-anthy \
+		--without-mana \
+		--without-prime \
+		--without-sj3 \
+		--without-skk
+
+	make
+	make DESTDIR=$PKG install
+}
