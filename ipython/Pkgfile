@@ -1,0 +1,16 @@
+# Description: an interactive computing environment
+# URL: http://ipython.scipy.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=ipython
+version=0.10.2
+release=1
+source=(http://ipython.scipy.org/dist/0.10.2/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+	python setup.py build
+	python setup.py install --root $PKG
+	mv $PKG/usr/share/man $PKG/usr/
+	rm -rf $PKG/usr/share/
+}
