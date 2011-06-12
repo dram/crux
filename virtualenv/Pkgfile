@@ -1,0 +1,14 @@
+# Description: a tool to create isolated Python environments
+# URL: http://www.virtualenv.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=python-virtualenv
+version=1.6.1
+release=1
+source=(http://pypi.python.org/packages/source/v/virtualenv/virtualenv-$version.tar.gz)
+
+build() {
+	cd virtualenv-$version
+	python setup.py build
+	python setup.py install --root $PKG
+}
