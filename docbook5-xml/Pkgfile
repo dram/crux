@@ -1,0 +1,34 @@
+# Description: The Source for Documentation 5.0
+# URL: http://www.docbook.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=docbook5-xml
+version=5.0
+release=1
+source=(http://www.docbook.org/xml/$version/docbook-$version.zip)
+
+build() {
+	cd docbook-$version
+
+	install -d -m 0755 \
+		$PKG/usr/share/xml/docbook/schema/dtd/5.0/ 		\
+		$PKG/usr/share/xml/docbook/schema/rng/5.0/ 		\
+		$PKG/usr/share/xml/docbook/schema/schematron/5.0/	\
+		$PKG/usr/share/xml/docbook/schema/xsd/5.0/
+
+
+	install -m 0644 dtd/docbook.dtd 		\
+		$PKG/usr/share/xml/docbook/schema/dtd/5.0/
+	install -m 0644 	rng/docbook.rnc 	\
+				rng/docbook.rng 	\
+				rng/docbookxi.rnc 	\
+				rng/docbookxi.rng 	\
+		$PKG/usr/share/xml/docbook/schema/rng/5.0/
+	install -m 0644 sch/docbook.sch 		\
+		$PKG/usr/share/xml/docbook/schema/schematron/5.0/
+	install -m 0644 	xsd/docbook.xsd 	\
+				xsd/xlink.xsd 		\
+				xsd/xml.xsd 		\
+		$PKG/usr/share/xml/docbook/schema/xsd/5.0/
+}
+
