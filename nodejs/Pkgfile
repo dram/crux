@@ -1,0 +1,15 @@
+# Description: Evented I/O for V8 JavaScript
+# URL: http://nodejs.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=nodejs
+version=0.4.8
+release=1
+source=(http://nodejs.org/dist/node-v$version.tar.gz)
+
+build() {
+	cd node-v$version
+	./configure --prefix=/usr/
+	make
+	make DESTDIR=$PKG install
+}
