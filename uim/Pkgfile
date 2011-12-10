@@ -3,7 +3,7 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=uim
-version=1.6.1
+version=1.7.1
 release=1
 source=(http://uim.googlecode.com/files/$name-$version.tar.bz2)
 

@@ -30,6 +30,8 @@ drwxr-xr-x	root/root	usr/lib/gtk-2.0/2.10.0/
 drwxr-xr-x	root/root	usr/lib/gtk-2.0/2.10.0/immodules/
 -rwxr-xr-x	root/root	usr/lib/gtk-2.0/2.10.0/immodules/im-uim.la
 -rwxr-xr-x	root/root	usr/lib/gtk-2.0/2.10.0/immodules/im-uim.so
+drwxr-xr-x	root/root	usr/lib/gtk-3.0/
+drwxr-xr-x	root/root	usr/lib/gtk-3.0/immodules/
 -rw-r--r--	root/root	usr/lib/libgcroots.a
 -rwxr-xr-x	root/root	usr/lib/libgcroots.la
 lrwxrwxrwx	root/root	usr/lib/libgcroots.so -> libgcroots.so.0.1.0
@@ -44,9 +46,9 @@ lrwxrwxrwx	root/root	usr/lib/libuim-scm.so -> libuim-scm.so.0.1.0
 lrwxrwxrwx	root/root	usr/lib/libuim-scm.so.0 -> libuim-scm.so.0.1.0
 -rwxr-xr-x	root/root	usr/lib/libuim-scm.so.0.1.0
 -rwxr-xr-x	root/root	usr/lib/libuim.la
-lrwxrwxrwx	root/root	usr/lib/libuim.so -> libuim.so.7.0.0
-lrwxrwxrwx	root/root	usr/lib/libuim.so.7 -> libuim.so.7.0.0
--rwxr-xr-x	root/root	usr/lib/libuim.so.7.0.0
+lrwxrwxrwx	root/root	usr/lib/libuim.so -> libuim.so.7.1.0
+lrwxrwxrwx	root/root	usr/lib/libuim.so.7 -> libuim.so.7.1.0
+-rwxr-xr-x	root/root	usr/lib/libuim.so.7.1.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/gcroots.pc
 -rw-r--r--	root/root	usr/lib/pkgconfig/uim.pc
@@ -94,7 +96,8 @@ drwxr-xr-x	root/root	usr/share/uim/
 -rw-r--r--	root/root	usr/share/uim/anthy-utf8.scm
 -rw-r--r--	root/root	usr/share/uim/anthy.scm
 -rw-r--r--	root/root	usr/share/uim/byeoru-custom.scm
--rw-r--r--	root/root	usr/share/uim/byeoru-dic.scm
+drwxr-xr-x	root/root	usr/share/uim/byeoru-data/
+-rw-r--r--	root/root	usr/share/uim/byeoru-data/byeoru-dict
 -rw-r--r--	root/root	usr/share/uim/byeoru-key-custom.scm
 -rw-r--r--	root/root	usr/share/uim/byeoru-symbols.scm
 -rw-r--r--	root/root	usr/share/uim/byeoru.scm
@@ -332,6 +335,7 @@ drwxr-xr-x	root/root	usr/share/uim/pixmaps/
 -rw-r--r--	root/root	usr/share/uim/pixmaps/zm_dark_background.svg
 -rw-r--r--	root/root	usr/share/uim/plugin.scm
 -rw-r--r--	root/root	usr/share/uim/predict-custom.scm
+-rw-r--r--	root/root	usr/share/uim/predict-google-suggest.scm
 -rw-r--r--	root/root	usr/share/uim/predict-look-skk.scm
 -rw-r--r--	root/root	usr/share/uim/predict-look.scm
 -rw-r--r--	root/root	usr/share/uim/predict-sqlite3.scm
