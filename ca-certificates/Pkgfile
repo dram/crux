@@ -3,12 +3,12 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=ca-certificates
-version=20090814
+version=20111025
 release=1
-source=(http://ftp.us.debian.org/debian/pool/main/c/ca-certificates/ca-certificates_20090814+nmu3_all.deb)
+source=(http://ftp.us.debian.org/debian/pool/main/c/$name/${name}_${version}_all.deb)
 
 build() {
-	ar -x ca-certificates_20090814+nmu3_all.deb
+	ar -x ${name}_${version}_all.deb
 	tar zxvf ./data.tar.gz
 	install -D -m 0755 usr/sbin/update-ca-certificates $PKG/usr/sbin/update-ca-certificates
 	cp -a etc $PKG/
