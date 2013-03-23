@@ -1,0 +1,16 @@
+# Description: Smart Common Input Method.
+# URL: http://www.scim-im.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=scim
+version=1.4.14
+release=1
+source=(http://downloads.sourceforge.net/project/$name/$name/$version/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+	rm -rf $PKG/usr/share/locale
+}
