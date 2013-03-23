@@ -1,0 +1,19 @@
+# Description: A lightweight panel/taskbar
+# URL: http://code.google.com/p/tint2
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=tint2
+version=0.11
+release=1
+source=(http://tint2.googlecode.com/files/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+	mkdir build
+	cd build
+	cmake -DCMAKE_INSTALL_PREFIX=/usr ../
+	make
+	make DESTDIR=$PKG install
+	mv $PKG/usr/share/man $PKG/usr/
+	rm -rf $PKG/usr/share/doc
+}
