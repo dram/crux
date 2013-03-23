@@ -3,7 +3,7 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=xchainkeys
-version=0.10
+version=0.11
 release=1
 source=(http://xchainkeys.googlecode.com/files/$name-$version.tar.gz)
 
