@@ -1,0 +1,17 @@
+# Description: Imlib2 based image viewer
+# URL: http://feh.finalrewind.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=feh
+version=2.9.1
+release=1
+source=(http://feh.finalrewind.org/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+	make PREFIX=/usr
+	make PREFIX=/usr DESTDIR=$PKG install
+
+	mv $PKG/usr/share/man $PKG/usr/
+	rm -r $PKG/usr/share/doc/
+}

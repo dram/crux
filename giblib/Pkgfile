@@ -1,0 +1,18 @@
+# Description: A simple library which wraps imlib2
+# URL: http://freshmeat.net/projects/giblib/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=giblib
+version=1.2.4
+release=1
+source=(http://linuxbrit.co.uk/downloads/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr
+
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/doc/
+}
