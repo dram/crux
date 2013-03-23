@@ -1,0 +1,16 @@
+# Description: An extensible, customizable text editor—and more.
+# URL: http://www.gnu.org/software/emacs/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=emacs
+version=24.3
+release=1
+source=(http://ftp.gnu.org/gnu/$name/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+	./configure 	--prefix=/usr \
+			--with-gif=no
+	make
+	make DESTDIR=$PKG install
+}
