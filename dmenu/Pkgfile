@@ -1,0 +1,14 @@
+# Description: a dynamic menu for X
+# URL: http://tools.suckless.org/dmenu/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=dmenu
+version=4.5
+release=1
+source=(http://dl.suckless.org/tools/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+	make
+	make DESTDIR=$PKG PREFIX=/usr MANPREFIX=/usr/man install
+}
