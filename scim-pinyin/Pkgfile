@@ -1,0 +1,16 @@
+# Description: Pinyin for SCIM
+# URL: http://www.scim-im.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=scim-pinyin
+version=0.5.92
+release=1
+source=(http://downloads.sourceforge.net/sourceforge/scim/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+	rm -rf $PKG/usr/share/locale
+}
