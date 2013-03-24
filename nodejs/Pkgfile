@@ -3,13 +3,15 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=nodejs
-version=0.4.8
+version=0.10.1
 release=1
-source=(http://nodejs.org/dist/node-v$version.tar.gz)
+source=(http://nodejs.org/dist/v$version/node-v$version.tar.gz)
 
 build() {
 	cd node-v$version
-	./configure --prefix=/usr/
+	./configure --prefix=/usr
 	make
 	make DESTDIR=$PKG install
+	mv $PKG/usr/share/man $PKG/usr
+	rmdir $PKG/usr/share
 }
