@@ -1,0 +1,18 @@
+# Description: DocBook XSL stylesheets
+# URL: http://docbook.sourceforge.net/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=docbook-xsl-ns
+version=1.78.1
+release=1
+source=(http://downloads.sourceforge.net/sourceforge/docbook/$name/$version/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+	install -d -m755 $PKG/usr/share/$name
+	install -m644 VERSION $PKG/usr/share/$name/VERSION.xsl
+	for d in $(ls -d */ | grep -v 'tests/\|tools'); do
+		install -d -m755 $PKG/usr/share/$name/$d
+		install -m644 $d*.{xml,xsl,dtd,ent} $PKG/usr/share/$name/$d || true
+	done
+}
