@@ -1,0 +1,16 @@
+# Description: Atheme On Screen Display
+# URL: http://www.atheme.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=libaosd
+version=0.2.7
+release=1
+source=(http://distfiles.atheme.org/$name-$version.tgz)
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr --mandir=/usr/man
+
+	make
+	make DESTDIR=$PKG install
+}

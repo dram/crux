@@ -1,0 +1,20 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/aosd_cat
+drwxr-xr-x	root/root	usr/include/
+drwxr-xr-x	root/root	usr/include/libaosd/
+-rw-r--r--	root/root	usr/include/libaosd/aosd-text.h
+-rw-r--r--	root/root	usr/include/libaosd/aosd.h
+drwxr-xr-x	root/root	usr/lib/
+lrwxrwxrwx	root/root	usr/lib/libaosd-text.so -> libaosd-text.so.2.0.0
+lrwxrwxrwx	root/root	usr/lib/libaosd-text.so.2 -> libaosd-text.so.2.0.0
+-rwxr-xr-x	root/root	usr/lib/libaosd-text.so.2.0.0
+lrwxrwxrwx	root/root	usr/lib/libaosd.so -> libaosd.so.2.0.0
+lrwxrwxrwx	root/root	usr/lib/libaosd.so.2 -> libaosd.so.2.0.0
+-rwxr-xr-x	root/root	usr/lib/libaosd.so.2.0.0
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/libaosd-text.pc
+-rw-r--r--	root/root	usr/lib/pkgconfig/libaosd.pc
+drwxr-xr-x	root/root	usr/man/
+drwxr-xr-x	root/root	usr/man/man1/
+-rw-r--r--	root/root	usr/man/man1/aosd_cat.1.gz
