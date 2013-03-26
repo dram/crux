@@ -1,0 +1,32 @@
+# Description: an HTTP and reverse proxy server
+# URL: http://nginx.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=nginx
+version=1.2.7
+release=1
+source=(http://nginx.org/download/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure \
+	  --prefix=/usr \
+	  --sbin-path=/usr/sbin/nginx \
+	  --conf-path=/etc/nginx/nginx.conf \
+	  --pid-path=/var/run/nginx.pid \
+	  --lock-path=/var/lock/nginx \
+	  --error-log-path=/var/log/nginx/error.log \
+	  --http-log-path=/var/log/nginx/access.log \
+	  --http-client-body-temp-path=/var/lib/nginx/client-body \
+	  --http-proxy-temp-path=/var/lib/nginx/proxy \
+	  --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
+	  --http-scgi-temp-path=/var/lib/nginx/scgi \
+	  --http-uwsgi-temp-path=/var/lib/nginx/uwsgi \
+
+	make DESTDIR=$PKG install
+
+	install -d -m755 $PKG/var/lib/nginx/
+
+	rm -r $PKG/usr/html $PKG/var/run
+}
