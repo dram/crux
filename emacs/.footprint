@@ -1,6 +1,6 @@
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
--rwxr-xr-x	root/root	usr/bin/ctags
+-rwxr-xr-x	root/root	usr/bin/ctags.emacs
 -rwxr-xr-x	root/root	usr/bin/ebrowse
 lrwxrwxrwx	root/root	usr/bin/emacs -> emacs-24.3
 -rwxr-xr-t	root/root	usr/bin/emacs-24.3
@@ -18,7 +18,7 @@ drwxr-xr-x	root/root	usr/libexec/emacs/24.3/x86_64-unknown-linux-gnu/
 -rwxr-xr-x	root/root	usr/libexec/emacs/24.3/x86_64-unknown-linux-gnu/update-game-score
 drwxr-xr-x	root/root	usr/man/
 drwxr-xr-x	root/root	usr/man/man1/
--rw-r--r--	root/root	usr/man/man1/ctags.1.gz
+-rw-r--r--	root/root	usr/man/man1/ctags.emacs.1.gz
 -rw-r--r--	root/root	usr/man/man1/ebrowse.1.gz
 -rw-r--r--	root/root	usr/man/man1/emacs.1.gz
 -rw-r--r--	root/root	usr/man/man1/emacsclient.1.gz

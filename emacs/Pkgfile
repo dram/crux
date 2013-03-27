@@ -4,7 +4,7 @@
 
 name=emacs
 version=24.3
-release=2
+release=3
 source=(http://ftp.gnu.org/gnu/$name/$name-$version.tar.xz)
 
 build() {
@@ -15,4 +15,6 @@ build() {
 			--with-gif=no
 	make
 	make DESTDIR=$PKG install
+	mv $PKG/usr/bin/ctags{,.emacs}
+	mv $PKG/usr/man/man1/ctags{,.emacs}.1.gz
 }
