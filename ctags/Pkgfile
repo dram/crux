@@ -1,0 +1,17 @@
+# Description: Exuberant Ctags
+# URL: http://ctags.sourceforge.net/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=ctags
+version=5.8
+release=1
+source=(http://downloads.sourceforge.net/project/$name/$name/$version/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr
+	make
+	make prefix=$PKG/usr install
+	mv $PKG/usr/share/man $PKG/usr/man
+	rmdir $PKG/usr/share
+}
