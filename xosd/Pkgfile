@@ -1,0 +1,16 @@
+# Description: X11 On Screen Display
+# URL: http://libxosd.sourceforge.net/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=xosd
+version=2.2.14
+release=1
+source=(http://downloads.sourceforge.net/project/libxosd/libxosd/$name-$version/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr
+
+	make
+	make DESTDIR=$PKG install
+}
