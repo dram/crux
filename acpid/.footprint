@@ -1,0 +1,11 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/acpi_listen
+drwxr-xr-x	root/root	usr/man/
+drwxr-xr-x	root/root	usr/man/man8/
+-rw-r--r--	root/root	usr/man/man8/acpi_listen.8.gz
+-rw-r--r--	root/root	usr/man/man8/acpid.8.gz
+-rw-r--r--	root/root	usr/man/man8/kacpimon.8.gz
+drwxr-xr-x	root/root	usr/sbin/
+-rwxr-xr-x	root/root	usr/sbin/acpid
+-rwxr-xr-x	root/root	usr/sbin/kacpimon
