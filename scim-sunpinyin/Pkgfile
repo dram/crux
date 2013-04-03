@@ -1,0 +1,14 @@
+# Description: SunPinyin wrapper for SCIM
+# URL: http://code.google.com/p/sunpinyin/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+# Depends on: sunpinyin
+
+name=scim-sunpinyin
+version=20130307
+release=1
+source=(https://github.com/sunpinyin/sunpinyin/archive/master.tar.gz)
+
+build() {
+	cd sunpinyin-master/wrapper/scim
+	scons install --prefix=/usr --install-sandbox=$PKG
+}
