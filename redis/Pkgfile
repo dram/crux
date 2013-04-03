@@ -3,7 +3,7 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=redis
-version=2.6.11
+version=2.6.12
 release=1
 source=(http://redis.googlecode.com/files/$name-$version.tar.gz)
 
