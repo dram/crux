@@ -1,0 +1,18 @@
+# Description: A statistical language model based Chinese input method
+# URL: http://code.google.com/p/sunpinyin/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=sunpinyin
+version=20130307
+release=1
+source=(https://github.com/sunpinyin/sunpinyin/archive/master.tar.gz)
+
+build() {
+	cd $name-master
+	scons 	--prefix=/usr \
+		--install-sandbox=$PKG \
+		install
+	mv $PKG/usr/share/man $PKG/usr/
+	mv $PKG/usr/share/doc/sunpinyin $PKG/usr/share/
+	rmdir $PKG/usr/share/doc
+}

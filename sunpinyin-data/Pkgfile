@@ -1,0 +1,16 @@
+# Description: Statistical language model data for sunpinyin
+# URL: http://code.google.com/p/open-gram/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+# Depends on: sunpinyin
+
+name=sunpinyin-data
+version=20130220
+release=1
+source=(http://open-gram.googlecode.com/files/lm_sc.t3g.arpa-20121025.tar.bz2
+http://open-gram.googlecode.com/files/dict.utf8-20130220.tar.bz2)
+
+build() {
+	cp /usr/share/sunpinyin/SLM-inst.mk Makefile
+	make
+	make DESTDIR=$PKG install
+}

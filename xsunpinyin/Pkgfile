@@ -1,0 +1,14 @@
+# Description: A standalone XIM server that uses SunPinyin input method
+# URL: http://code.google.com/p/sunpinyin/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+# Depends on: sunpinyin
+
+name=xsunpinyin
+version=20130307
+release=1
+source=(https://github.com/sunpinyin/sunpinyin/archive/master.tar.gz)
+
+build() {
+	cd sunpinyin-master/wrapper/xim
+	scons install --prefix=/usr --install-sandbox=$PKG
+}
