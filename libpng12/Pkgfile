@@ -1,0 +1,22 @@
+# Description: the official PNG reference library
+# URL: http://www.libpng.org
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=libpng12
+version=1.2.50
+release=1
+source=(http://sourceforge.net/projects/libpng/files/libpng-$version.tar.xz)
+
+build() {
+	cd libpng-$version
+	./configure --prefix=/usr
+
+	make DESTDIR=$PKG install
+
+	rm -f $PKG/usr/bin/libpng-config
+	rm -f $PKG/usr/include/png{,conf}.h
+	rm -f $PKG/usr/lib/libpng.{a,la,so}
+	rm -f $PKG/usr/lib/pkgconfig/libpng.pc
+
+	rm -rf $PKG/usr/share/
+}

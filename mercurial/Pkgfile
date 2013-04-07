@@ -1,0 +1,14 @@
+# Description: A free, distributed source control management tool
+# URL: http://mercurial.selenic.com/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=mercurial
+version=2.5.4
+release=1
+source=(http://mercurial.selenic.com/release/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+	python setup.py build
+	python setup.py install --root $PKG
+}
