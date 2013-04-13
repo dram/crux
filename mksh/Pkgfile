@@ -3,12 +3,12 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=mksh
-version=R39c
+version=R44
 release=1
-source=(http://pub.allbsd.org/MirOS/dist/mir/$name/$name-$version.cpio.gz)
+source=(http://pub.allbsd.org/MirOS/dist/mir/$name/$name-$version.tgz)
 
 build() {
-	gzip -dc $name-$version.cpio.gz | cpio -mid && cd $name
+	cd $name
 	/bin/sh ./Build.sh
 	mkdir -p $PKG/bin/ $PKG/usr/man/man1/
 	cp mksh $PKG/bin/
