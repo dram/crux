@@ -3,9 +3,9 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=mksh
-version=R44
+version=R45
 release=1
-source=(http://pub.allbsd.org/MirOS/dist/mir/$name/$name-$version.tgz)
+source=(https://www.mirbsd.org/MirOS/dist/mir/$name/$name-$version.tgz)
 
 build() {
 	cd $name
