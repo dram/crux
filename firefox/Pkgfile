@@ -1,0 +1,15 @@
+# Description: Mozilla Firefox Web Browser
+# URL: http://www.mozilla.org/en-US/firefox
+# Packager: Xin Wang, dram dot wang at gmail dot com
+# Depends on: dbus-glib
+
+name=firefox
+version=21.0
+release=1
+source=(http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$version/linux-x86_64/en-US/$name-$version.tar.bz2)
+
+build() {
+	mkdir -p $PKG/opt/bin/
+	mv $SRC/firefox $PKG/opt/
+	ln -s -t $PKG/opt/bin/ /opt/firefox/firefox
+}
