@@ -66,7 +66,6 @@ drwxr-xr-x	root/root	opt/firefox/icons/
 -rw-r--r--	root/root	opt/firefox/libsoftokn3.chk
 -rwxr-xr-x	root/root	opt/firefox/libsoftokn3.so
 -rwxr-xr-x	root/root	opt/firefox/libssl3.so
--rw-r--r--	root/root	opt/firefox/libxpcom.so
 -rwxr-xr-x	root/root	opt/firefox/libxul.so
 -rwxr-xr-x	root/root	opt/firefox/mozilla-xremote-client
 -rw-r--r--	root/root	opt/firefox/omni.ja

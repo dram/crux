@@ -4,7 +4,7 @@
 # Depends on: dbus-glib
 
 name=firefox
-version=21.0
+version=22.0
 release=1
 source=(http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/$version/linux-x86_64/en-US/$name-$version.tar.bz2)
 
