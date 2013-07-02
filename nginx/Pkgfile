@@ -3,7 +3,7 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=nginx
-version=1.2.7
+version=1.4.1
 release=1
 source=(http://nginx.org/download/$name-$version.tar.gz)
 
