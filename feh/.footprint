@@ -17,7 +17,8 @@ drwxr-xr-x	root/root	usr/share/feh/fonts/
 -rw-r--r--	root/root	usr/share/feh/fonts/menu.style
 -rw-r--r--	root/root	usr/share/feh/fonts/yudit.ttf
 drwxr-xr-x	root/root	usr/share/feh/images/
--rw-r--r--	root/root	usr/share/feh/images/logo.svg
+-rw-r--r--	root/root	usr/share/feh/images/feh.png
+-rw-r--r--	root/root	usr/share/feh/images/feh.svg
 -rw-r--r--	root/root	usr/share/feh/images/menubg_aluminium.png
 -rw-r--r--	root/root	usr/share/feh/images/menubg_aqua.png
 -rw-r--r--	root/root	usr/share/feh/images/menubg_black.png
