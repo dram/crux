@@ -3,7 +3,7 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=mercurial
-version=2.5.4
+version=2.6.3
 release=1
 source=(http://mercurial.selenic.com/release/$name-$version.tar.gz)
 

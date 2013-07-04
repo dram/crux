@@ -9,6 +9,8 @@ drwxr-xr-x	root/root	usr/lib/python2.7/site-packages/hgext/
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/__init__.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/acl.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/acl.pyc
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/blackbox.py
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/blackbox.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/bugzilla.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/bugzilla.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/children.py
@@ -148,7 +150,7 @@ drwxr-xr-x	root/root	usr/lib/python2.7/site-packages/hgext/zeroconf/
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/zeroconf/Zeroconf.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/zeroconf/__init__.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/hgext/zeroconf/__init__.pyc
--rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial-2.5.4-py2.7.egg-info
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial-2.6.3-py2.7.egg-info
 drwxr-xr-x	root/root	usr/lib/python2.7/site-packages/mercurial/
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/__init__.py (EMPTY)
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/__init__.pyc
@@ -190,6 +192,8 @@ drwxr-xr-x	root/root	usr/lib/python2.7/site-packages/mercurial/
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/dagutil.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/demandimport.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/demandimport.pyc
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/dicthelpers.py
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/dicthelpers.pyc
 -rwxr-xr-x	root/root	usr/lib/python2.7/site-packages/mercurial/diffhelpers.so
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/dirstate.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/dirstate.pyc
@@ -368,8 +372,12 @@ drwxr-xr-x	root/root	usr/lib/python2.7/site-packages/mercurial/locale/zh_TW/LC_M
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/revlog.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/revset.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/revset.pyc
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/scmposix.py
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/scmposix.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/scmutil.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/scmutil.pyc
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/scmwindows.py
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/scmwindows.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/setdiscovery.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/setdiscovery.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/similar.py
@@ -563,6 +571,8 @@ drwxr-xr-x	root/root	usr/lib/python2.7/site-packages/mercurial/templates/static/
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/treediscovery.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/ui.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/ui.pyc
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/unionrepo.py
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/unionrepo.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/url.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/url.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/util.py
@@ -575,3 +585,5 @@ drwxr-xr-x	root/root	usr/lib/python2.7/site-packages/mercurial/templates/static/
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/windows.pyc
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/wireproto.py
 -rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/wireproto.pyc
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/worker.py
+-rw-r--r--	root/root	usr/lib/python2.7/site-packages/mercurial/worker.pyc
