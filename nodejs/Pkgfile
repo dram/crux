@@ -3,7 +3,7 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=nodejs
-version=0.10.1
+version=0.10.12
 release=1
 source=(http://nodejs.org/dist/v$version/node-v$version.tar.gz)
 
