@@ -3,7 +3,7 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=mksh
-version=R46
+version=R50d
 release=1
 source=(https://www.mirbsd.org/MirOS/dist/mir/$name/$name-$version.tgz)
 
