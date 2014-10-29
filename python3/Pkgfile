@@ -3,13 +3,13 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=python3
-version=3.3.2
+version=3.4.2
 release=1
-source=(http://www.python.org/ftp/python/$version/Python-$version.tar.bz2)
+source=(http://www.python.org/ftp/python/$version/Python-$version.tgz)
 
 build() {
 	cd Python-$version
-	./configure --prefix=/usr --mandir=/usr/man --disable-nls
+	./configure --prefix=/usr --mandir=/usr/man
 	make
 	make DESTDIR=$PKG install
 
