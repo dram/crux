@@ -3,19 +3,16 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=redis
-version=2.6.12
+version=2.8.17
 release=1
-source=(http://redis.googlecode.com/files/$name-$version.tar.gz)
+source=(http://download.redis.io/releases/$name-$version.tar.gz
+	redis.conf.patch)
 
 build() {
 	cd $name-$version
+	patch -p1 -i ../redis.conf.patch
 	mkdir -p $PKG/usr/bin
 	make INSTALL_BIN=$PKG/usr/bin PREFIX=/usr install
 	install -D -m644 $SRC/$name-$version/redis.conf $PKG/usr/etc/redis.conf
 	install -d -m755 $PKG/var/lib/redis/
-
-	sed -i  -e 's|daemonize no|daemonize yes|' \
-		-e 's|dir \./|dir /var/lib/redis/|' \
-		-e 's|logfile stdout|logfile /var/log/redis.log|' \
-		-e 's|# bind 127.0.0.1|bind 127.0.0.1|' $PKG/usr/etc/redis.conf
 }
