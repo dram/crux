@@ -1,0 +1,17 @@
+# Description: Erlang Programming Language
+# URL: http://www.erlang.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=erlang
+version=17.3
+release=1
+source=(http://www.erlang.org/download/otp_src_${version}.tar.gz
+	http://www.erlang.org/download/otp_doc_man_${version}.tar.gz)
+
+build() {
+	cd otp_src_${version}
+	./configure --prefix=/usr --enable-smp-support
+	make
+	make DESTDIR=$PKG install
+	mv ../man $PKG/usr/lib/erlang
+}
