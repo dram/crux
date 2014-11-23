@@ -3,7 +3,7 @@
 # Packager: Xin Wang, dram dot wang at gmail dot com
 
 name=virtualenv
-version=1.9.1
+version=1.11.6
 release=1
 source=(http://pypi.python.org/packages/source/v/$name/$name-$version.tar.gz)
 
