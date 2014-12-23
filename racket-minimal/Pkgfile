@@ -1,0 +1,16 @@
+# Description: The Racket Language
+# URL: http://racket-lang.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=racket-minimal
+version=6.1
+release=1
+source=(http://mirror.racket-lang.org/installers/$version/$name-$version-src.tgz)
+
+build() {
+	cd racket-$version/src
+
+	./configure --prefix=/usr --sysconfdir=/usr/etc --enable-shared
+	make
+	make DESTDIR=$PKG install
+}
