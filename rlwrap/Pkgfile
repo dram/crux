@@ -1,0 +1,16 @@
+# Description: a readline wrapper
+# URL: http://utopia.knoware.nl/~hlub/uck/rlwrap/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=rlwrap
+version=0.42
+release=1
+source=(http://utopia.knoware.nl/~hlub/uck/$name/$name-${version}.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --mandir=/usr/man
+	make
+	make DESTDIR=$PKG install
+}
