@@ -1,0 +1,17 @@
+# Description: OCaml Package Manager
+# URL: https://opam.ocaml.org/
+# Packager: Xin Wang, dram dot wang at gmail dot com
+
+name=opam
+version=1.2.0
+release=1
+source=(https://github.com/ocaml/opam/releases/download/$version/$name-full-${version}.tar.gz)
+
+build() {
+	cd $name-full-$version
+
+	./configure --prefix=/usr --mandir=/usr/man
+	make lib-ext
+	make
+	make DESTDIR=$PKG install
+}
